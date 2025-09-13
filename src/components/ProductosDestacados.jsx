@@ -5,14 +5,19 @@ import producto3 from '../img/producto3.jpg';
 import producto4 from '../img/producto4.jpg';
 
 const ProductosDestacados = () => {
-    // Datos de los productos en un array para mejor mantenibilidad
+    // Función para formatear el precio
+    const formatearPrecio = (precio) => {
+        return `S/ ${precio.toFixed(2)}`;
+    };
+
+    // Datos de los productos con precios como números
     const productos = [
         {
             id: 1,  
             imagen: producto1,
             nombre: "Alimento Premium para Perros",
             descripcion: "Nutrición completa para todas las razas y tamaños.",
-            precio: "$49.99",
+            precio: 49.99, // Cambiado a número
             enlace: "/productos/1"
         },
         {   
@@ -20,7 +25,7 @@ const ProductosDestacados = () => {
             imagen: producto2,
             nombre: "Juguete Interactivo para Gatos",  
             descripcion: "Mantén a tu gato entretenido durante horas.",
-            precio: "$19.99",
+            precio: 19.99, // Cambiado a número
             enlace: "/productos/2"
         }, 
         {   
@@ -28,7 +33,7 @@ const ProductosDestacados = () => {
             imagen: producto3,
             nombre: "Cama Cómoda para Mascotas",
             descripcion: "El lugar perfecto para que tu mascota descanse.",
-            precio: "$39.99",
+            precio: 39.99, // Cambiado a número
             enlace: "/productos/3"
         },
         {   
@@ -36,7 +41,7 @@ const ProductosDestacados = () => {
             imagen: producto4,
             nombre: "Collar Ajustable para Perros",
             descripcion: "Duradero y cómodo, ideal para paseos diarios.",
-            precio: "$14.99",
+            precio: 14.99, // Cambiado a número
             enlace: "/productos/4"
         }
     ];
@@ -63,7 +68,9 @@ const ProductosDestacados = () => {
                                 <div className="producto-info">
                                     <h3>{producto.nombre}</h3>
                                     <p>{producto.descripcion}</p>
-                                    <div className="producto-precio">{producto.precio}</div>
+                                    <div className="producto-precio">
+                                        {formatearPrecio(producto.precio)} {/* Usando la función */}
+                                    </div>
                                     <button className="btn-producto">Ver Producto</button>
                                 </div>
                             </div>

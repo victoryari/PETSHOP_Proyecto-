@@ -1,11 +1,14 @@
+// Header.jsx (completo y actualizado)
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useCarrito } from '../context/CarritoContext';
 import logo from '../img/logo.png';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const { carrito } = useCarrito();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,21 +33,17 @@ const Header = () => {
 
     const navItems = [
         { to: "/", label: "Inicio" },
-        { to: "/productos", label: "Productos" }, // Cambiado a ruta /productos
+        { to: "/productos", label: "Productos" },
         { to: "/servicios", label: "Servicios" },
-        { to: "/contactenos", label: "Contáctenos" }, // Cambiado a ruta /contactenos
+        { to: "/contactenos", label: "Contáctenos" },
         { href: "#nosotros", label: "Nosotros" }
     ];
 
     return (
         <>
-            {/* Top Bar (sin cambios) */}
+            {/* Top Bar */}
             <div className={`top-bar ${isScrolled ? 'scrolled' : ''}`}>
                 <div className="container">
-                    {/* <div className="contact-info">
-                        <span><i className="fas fa-phone"></i> +51 977549783</span>
-                        <span><i className="fas fa-envelope"></i> contacto@petshop.com</span>
-                    </div> */}
                     <div className="social-media">
                         <a href="#"><i className="fab fa-facebook-f"></i></a>
                         <a href="#"><i className="fab fa-whatsapp"></i></a>
@@ -53,7 +52,7 @@ const Header = () => {
                 </div>
             </div>
 
-            {/* Main Header (sin cambios) */}
+            {/* Main Header */}
             <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
                 <div className="container">
                     <Link to="/" className="logo">
@@ -73,7 +72,13 @@ const Header = () => {
                     </div>
 
                     <div className="user-actions">
-                        <a href="#carrito"><i className="fas fa-shopping-cart"></i> Carrito</a>
+                        <Link to="/carrito" className="cart-link">
+                            <i className="fas fa-shopping-cart"></i> 
+                            Carrito
+                            {carrito.length > 0 && (
+                                <span className="cart-count">{carrito.length}</span>
+                            )}
+                        </Link>
                         <a href="#cuenta"><i className="fas fa-user"></i> Mi Cuenta</a>
                     </div>
 
@@ -88,7 +93,7 @@ const Header = () => {
                 </div>
             </header>
 
-            {/* Navigation - Modificado para usar React Router */}
+            {/* Navigation */}
             <nav className={`main-nav ${isMenuOpen ? 'active' : ''} ${isScrolled ? 'scrolled' : ''}`}>
                 <div className="container">
                     <ul>
