@@ -8,7 +8,7 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const { carrito } = useCarrito();
+    const { carrito, getTotalProductos } = useCarrito();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -35,6 +35,7 @@ const Header = () => {
         { to: "/", label: "Inicio" },
         { to: "/productos", label: "Productos" },
         { to: "/servicios", label: "Servicios" },
+        { to: "/reservas", label: "Reservas" },
         { to: "/contactenos", label: "Contáctenos" },
         { href: "#nosotros", label: "Nosotros" }
     ];
@@ -75,8 +76,8 @@ const Header = () => {
                         <Link to="/carrito" className="cart-link">
                             <i className="fas fa-shopping-cart"></i> 
                             Carrito
-                            {carrito.length > 0 && (
-                                <span className="cart-count">{carrito.length}</span>
+                            {getTotalProductos() > 0 && (
+                                <span className="cart-count">{getTotalProductos()}</span>
                             )}
                         </Link>
                         <a href="#cuenta"><i className="fas fa-user"></i> Mi Cuenta</a>
