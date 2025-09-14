@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CarritoProvider } from './context/CarritoContext';
 import Layout from './components/Layout';
-import Home from './pages/Home';
+import Home from './pages/home';
 import ProductosPage from './pages/ProductosPage';
 import ServiciosPage from './pages/ServiciosPage';
 import ContactoPage from './pages/ContactoPage';
